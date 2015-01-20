@@ -1,7 +1,10 @@
 require("sinatra")
 require("sinatra/reloader")
+require("pg")
 also_reload("lib/**/*.rb")
 require("./lib/task")
+
+DB = PG.connect({:dbname => "to_do"})
 
 get("/") do
   @tasks = Task.all()
@@ -9,9 +12,8 @@ get("/") do
 end
 
 post("/tasks") do
-  @name = params.fetch("name")
   @description = params.fetch("description")
-  task = Task.new({:name => @name, :description => @description})
+  task = Task.new({:description => @description})
   task.save()
   erb(:success)
 end

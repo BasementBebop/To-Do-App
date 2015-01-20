@@ -2,11 +2,16 @@ class Task
 
   @@all_tasks = []
 
-  attr_reader(:name, :description)
+  attr_reader(:description)
 
   define_method(:initialize) do |attributes|
-    @name = attributes.fetch(:name)
     @description = attributes.fetch(:description)
+  end
+
+  define_method(:==) do |other|
+    same_class = self.class().eql?(other.class())
+    same_description = self.description().eql?(other.description())
+    same_class.&(same_description)
   end
 
   define_singleton_method(:all) do

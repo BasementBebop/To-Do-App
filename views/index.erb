@@ -4,7 +4,7 @@
 
 <dl>
   <% @tasks.each() do |task| %>
-    <dt><%= task.name() %></dt>
+    <!-- <dt><%= task.name() %></dt> -->
     <dd><%= task.description() %></dd>
   <% end %>
 </dl>
@@ -12,8 +12,6 @@
 <p>Create a new task:</p>
 
 <form action="/tasks" method="post">
-  <label for="name">Task Name</label>
-  <input id="name" name="name" type="text">
 
   <label for="description">Task Description</label>
   <input id="description" name="description" type="text">
