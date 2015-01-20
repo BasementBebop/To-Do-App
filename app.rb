@@ -9,8 +9,9 @@ get("/") do
 end
 
 post("/tasks") do
-  description = params.fetch("description")
-  task = Task.new(description)
+  @name = params.fetch("name")
+  @description = params.fetch("description")
+  task = Task.new({:name => @name, :description => @description})
   task.save()
   erb(:success)
 end
