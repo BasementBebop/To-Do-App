@@ -8,4 +8,8 @@ class Task
     @description
   end
 
+  define_singleton_method(:all) do
+    []
+  end
+  
 end
