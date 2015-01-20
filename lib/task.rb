@@ -2,12 +2,11 @@ class Task
 
   @@all_tasks = []
 
-  define_method(:initialize) do |description|
-    @description = description
-  end
+  attr_reader(:name, :description)
 
-  define_method(:description) do
-    @description
+  define_method(:initialize) do |attributes|
+    @name = attributes.fetch(:name)
+    @description = attributes.fetch(:description)
   end
 
   define_singleton_method(:all) do

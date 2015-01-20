@@ -8,8 +8,8 @@ describe(Task) do
 
   describe("#description") do
     it("lets you give it a description") do
-      test_task = Task.new("go get coffee")
-      expect(test_task.description()).to(eq("go get coffee"))
+      test_task = Task.new({:name => "lunch", :description => "meet gam-gam at the deli for roast beef sammies"})
+      expect(test_task.description()).to(eq("meet gam-gam at the deli for roast beef sammies"))
     end
   end
 
@@ -21,7 +21,7 @@ describe(Task) do
 
   describe("#save") do
     it("adds a task to the array of saved tasks") do
-      test_task = Task.new("go get coffee")
+      test_task = Task.new({:name => "lunch", :description => "meet gam-gam at the deli for roast beef sammies"})
       test_task.save()
       expect(Task.all()).to(eq([test_task]))
     end
@@ -29,7 +29,8 @@ describe(Task) do
 
   describe(".clear") do
     it("empties out all of the saved tasks") do
-      Task.new("go get coffee").save()
+      test_task = Task.new({:name => "lunch", :description => "meet gam-gam at the deli for roast beef sammies"})
+      test_task.save()
       Task.clear()
       expect(Task.all()).to(eq([]))
     end
