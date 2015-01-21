@@ -8,6 +8,16 @@ describe(List) do
     end
   end
 
+  describe(".find") do
+    it("returns a list by its ID number") do
+      test_list = List.new({:name => "Gam-Gam stuff", :id => nil})
+      test_list.save()
+      test_list2 = List.new({:name => "More Gam-Gam stuff", :id => nil})
+      test_list2.save()
+      expect(List.find(test_list2.id())).to(eq(test_list2))
+    end
+  end
+
   describe("#name") do
     it("tells you its name") do
       list = List.new({:name => "Gam-Gam", :id => nil})

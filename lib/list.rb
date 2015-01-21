@@ -17,6 +17,16 @@ class List
     lists
   end
 
+  define_singleton_method(:find) do |id|
+    found_list = nil
+    List.all().each() do |list|
+      if list.id().eql?(id)
+        found_list = list
+      end
+    end
+    found_list
+  end
+
   define_method(:save) do
     result = DB.exec("INSERT INTO lists (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
