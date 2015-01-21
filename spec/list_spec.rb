@@ -41,6 +41,18 @@ describe(List) do
     end
   end
 
+  describe("#tasks") do
+    it("returns an array of tasks for that list") do
+      test_list = List.new({:name => "Gam-Gam Jams", :id => nil})
+      test_list.save()
+      test_task = Task.new({:description => "Get roast beef sammies from the deli", :list_id => test_list.id()})
+      test_task.save()
+      test_task2 = Task.new({:description => "Pick up fancy yarn for epicly cozy narwhal sweater action", :list_id => test_list.id()})
+      test_task2.save()
+      expect(test_list.tasks()).to(eq([test_task, test_task2]))
+    end
+  end
+
   describe("#==") do
     it("is the same list if it has the same name") do
       list1 = List.new({:name => "Gam-Gam", :id => nil})
